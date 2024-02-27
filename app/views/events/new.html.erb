@@ -1,0 +1,10 @@
+<div>
+  <div id="title">Create new event </div>
+  <div id="form-content">
+    <%= form_tag create_events_events_path, method: :post,  validate: true do %>
+        <%= text_field_tag :'event[name]' %>
+        <%= button_tag "Event A", type: 'submit', value: "event_a" %>
+        <%= button_tag "Event B", type: 'submit', value: "event_b" %>
+    <% end %>
+  </div>
+</div>

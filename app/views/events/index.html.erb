@@ -1,0 +1,32 @@
+<div>
+	<% if user_signed_in? %> 
+	   <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+	<% else %>
+	   <%= button_to "Sign in", new_user_session_path %> 
+	<% end %>
+	<div>Events Lists</div>
+	<% if flash[:warning].present? %>
+	  <p><%= "Error Message Form Iterable API #{flash[:warning]} "%></p>
+	<% end %>
+    <table class="table is-bordered is-fullwidth">                         
+        <tr>                          
+            <th>Name</th>
+            <th>EventType</th>
+            <th>CreateAt</th>
+			<th>Action</th>
+        </tr>
+			<% if @events.present? %>
+				<% @events.each do |event| %>
+		            <tr>
+						<td><%= event.name %></td>
+						<td><%= event.event_type %></td>
+						<td><%= event.created_at %></td>
+						<td><%= link_to “Send Email”, send_mail_events_path, method: :post , class: "action", remote: true %></td>	
+					</tr>
+			    <% end %>
+			<% else %>
+				<tr><td>No event created for this user</td></tr>
+			<% end %>
+        </table>  
+    </div>
+</div>
