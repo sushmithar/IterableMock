@@ -8,5 +8,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root to: "event#index" 
+  root to: "events#index" 
+  resources :events do
+    collection do
+      post :create_events
+      post :send_mail
+    end
+  end
 end
