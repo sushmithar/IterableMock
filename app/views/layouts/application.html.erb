@@ -11,6 +11,16 @@
   </head>
 
   <body>
+    <div><a>EVENTS MANAGEMENT</a></div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons" style="display: flex; justify-content:center;">
+          <%#= button_to "Sign Out", {:controller => :user_sessions, :action => 'destroy', :id => @current_user.id}, :method => :delete, :class=>'button is-small is-dark' %>
+        </div>
+      </div>
+    <div>
+    <p class="notice"><%= notice %></p> 
+    <p class="alert"><%= alert %></p> 
     <%= yield %>
   </body>
 </html>
