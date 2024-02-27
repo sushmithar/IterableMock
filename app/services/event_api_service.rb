@@ -34,16 +34,14 @@ class EventApiService
     } )
   end
 
-  def send_mail(current_user)
-    self.class.post("#{BASE_URL}/email/target",{
+  def send_mail(user)
+    self.class.post("#{BASE_URL}/api/email/target",{
       body: {
         "campaignId": @campaignId,
-        "recipientEmail": current_user.email,
-        "recipientUserId": current_user.id.to_s,
-        "dataFields": {},
+        "recipientEmail": user[:email],
+        "recipientUserId":user[:id].to_s,
         "sendAt": DateTime.now.strftime("%Y-%m-%d %I:%M:%S").to_s,
-        "allowRepeatMarketingSends": false,
-        "metadata": {}
+        "allowRepeatMarketingSends": false
       },
       headers: {'Content-Type': 'application/json', 'API-Key': @api_key}
     })
