@@ -1,10 +1,16 @@
-<div>
-  <div id="title">Create new event </div>
+<%= stylesheet_link_tag "devise/new", "data-turbo-track": "reload" %>
+<div id="form-div" class="field">
+  <div id="title-div"><h4 id="h4-title" class="title is-4">Create new event<h4></div>
   <div id="form-content">
     <%= form_tag create_events_events_path, method: :post,  validate: true do %>
-        <%= text_field_tag :'event[name]' %>
-        <%= button_tag "Event A", type: 'submit', value: "event_a" %>
-        <%= button_tag "Event B", type: 'submit', value: "event_b" %>
+        <div class="field">
+          <%= label_tag "name","Event Name",class: "label" %>
+          <%= text_field_tag :"event[name]"," ",class: "input is-medium" %>
+        </div>
+        <div class="field">
+          <%= button_tag "Create Event A", type: 'submit', value: "event_a", class: "button is-primary is-light" %>
+          <%= button_tag "Create Event B", type: 'submit', value: "event_b", class: "button is-primary is-light" %>
+        </div>
     <% end %>
   </div>
 </div>

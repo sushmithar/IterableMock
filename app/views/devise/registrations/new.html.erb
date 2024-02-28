@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag "devise/new", "data-turbo-track": "reload" %>
+<div id="form-div" class="field">
+  <h2 id="h4-title" class="title is-3">Sign up</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email, class: "label" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-medium" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, class: "label" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "input is-medium" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, class: "label" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input is-medium" %>
+    </div>
+
+    <div class="buttons">
+      <%= f.submit "Sign up", class:"button is-danger" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

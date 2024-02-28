@@ -1,13 +1,17 @@
 <div>
-	<% if user_signed_in? %> 
-	   <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
-	<% else %>
-	   <%= button_to "Sign in", new_user_session_path %> 
-	<% end %>
-	<div>Events Lists</div>
+    <div class="login-buttons">
+		<% if user_signed_in? %> 
+		<%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "button is-danger is-light" %> 
+		<% else %>
+		<%= button_to "Sign in", new_user_session_path, class: "button is-primary is-light" %> 
+		<% end %>
+	</div>
 	<% if flash[:warning].present? %>
-	  <p><%= "Error Message Form Iterable API #{flash[:warning]} "%></p>
+	    <div class="notification">
+	       <p><%= "Error Message Form Iterable API #{flash[:warning]} "%></p>
+	    </div>
 	<% end %>
+	<div id="title-div"><h4 id="h4-title" class="title is-4">Events Lists</h4></div>
     <table class="table is-bordered is-fullwidth">                         
         <tr>                          
             <th>Name</th>
@@ -25,7 +29,9 @@
 					</tr>
 			    <% end %>
 			<% else %>
-				<tr><td>No event created for this user</td></tr>
+				<tr>
+				<td colspan=4 class="td-colspan">No event created for this user</td>
+				</tr>
 			<% end %>
         </table>  
     </div>
