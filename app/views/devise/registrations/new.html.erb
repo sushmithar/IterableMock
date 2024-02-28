@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "devise/new", "data-turbo-track": "reload" %>
 <div id="form-div" class="field">
-  <h2 class="title is-3">Sign up</h2>
+  <h2 id="h4-title" class="title is-3">Sign up</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>

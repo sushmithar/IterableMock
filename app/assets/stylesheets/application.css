@@ -14,3 +14,7 @@
  *= require_self
  */
  @import "bulma";
+
+ #main-title{
+    color: #002b67;
+ }
