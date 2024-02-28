@@ -1,0 +1,26 @@
+.login-buttons{
+    float: right;
+    margin-top: -23px;
+}
+
+.notification{
+    margin-left: 37%;
+    width: 30%;
+}
+
+#h4-title{
+    text-align: center
+}
+
+.table.is-fullwidth {
+    width: 80% !important;
+    margin-left: 11%;
+}
+
+#title-div{
+    margin: 20px 0px;
+}
+
+.td-colspan{
+    text-align: center !important;
+}
