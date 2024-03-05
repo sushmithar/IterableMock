@@ -9,9 +9,16 @@ class UserApiService
     @api_key = "qwertyuiofhjk"
   end
 
-  def add_user(email)
+  def add_user_by_email(email)
     self.class.post("#{BASE_URL}api/users/update", {
         body: { "email": email, "mySettings": {"email": true}, "dataFields": {}}.to_json,
+        headers: {'Content-Type': 'application/json', 'API_Key': @api_key}
+    } )
+  end
+
+  def add_user_by_userId(user_id)
+    self.class.post("#{BASE_URL}api/users/update", {
+        body: { "userID": user_id, "mySettings": {"email": true}, "dataFields": {}}.to_json,
         headers: {'Content-Type': 'application/json', 'API_Key': @api_key}
     } )
   end

@@ -73,37 +73,72 @@ RSpec.configure do |config|
       ]
     }
     stub_request(:get, "https://api.iterable.com/api/events/sushmitha0614@gmail.com").
-    to_return(status: 200, body: fetch_user_events.to_json)
+    to_return(status: 200, body: fetch_user_events.to_json,
+       headers: {"Content-Type": "application/json", 'ACCEPT': 'application/json'})
   end
 
-  config.before(:each) do
+   config.before(:each) do
+
+    # Response code can be Success, BadApiKey, BadAuthorizationHeader, BadJsonBody, BadParams,
+    #   BatchTooLarge, DatabaseError, EmailAlreadyExists, ExternalKeyConflict, Forbidden,
+    #   ForbiddenParamsError, ForgottenUserError, GenericError, InvalidEmailAddressError,
+    #   InvalidJwtPayload, InvalidUserIdError, JwtUserIdentifiersMismatched, NotFound,
+    #   QueueEmailError, RateLimitExceeded, RequestFieldsTypesMismatched, Unauthorized,
+    #  UniqueFieldsLimitExceeded, UnknownEmailError, UnknownUserIdError or UserIdAlreadyExists
+
+    # considering all input for api are valid scenario and success code return from third party api
+    # to test other scenarioes code and maessage can be changed
+
     create_events = {
       "msg": "string",
       "code": "Success",
       "params": {}
     }
     stub_request(:post, "https://api.iterable.com/api/events/track").
-    to_return(status: 200, body: create_events.to_json)
-  end
+    to_return(status: 200, body: create_events.to_json,
+                headers: {"Content-Type": "application/json", 'ACCEPT': 'application/json'})
+   end
 
   config.before(:each) do
+
+    # Response code can be Success, BadApiKey, BadAuthorizationHeader, BadJsonBody, BadParams,
+    #   BatchTooLarge, DatabaseError, EmailAlreadyExists, ExternalKeyConflict, Forbidden,
+    #   ForbiddenParamsError, ForgottenUserError, GenericError, InvalidEmailAddressError,
+    #   InvalidJwtPayload, InvalidUserIdError, JwtUserIdentifiersMismatched, NotFound,
+    #   QueueEmailError, RateLimitExceeded, RequestFieldsTypesMismatched, Unauthorized,
+    #  UniqueFieldsLimitExceeded, UnknownEmailError, UnknownUserIdError or UserIdAlreadyExists
+
+    # considering all input for api are valid scenario and success code return from third party api
+    # to test other scenarioes code and maessage can be changed
+
     send_mail = {
       "msg": "string",
       "code": "Success",
       "params": {}
     }
     stub_request(:post, "https://api.iterable.com/api/email/target").
-    with(
-      body: "campaignId=1&recipientEmail=sushmitha0614%40gmail.com&recipientUserId=1&sendAt=2024-02-28%2012%3A54%3A19&allowRepeatMarketingSends=false",
-      headers: {
-      'Accept'=>'*/*',
-      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-      'Api-Key'=>'QWERTYUIVBNMLKJHG',
-      'Content-Type'=>'application/json',
-      'User-Agent'=>'Ruby'
-      }).
-    to_return(status: 200, body: send_mail.to_json, headers: {})
+    to_return(body: send_mail.to_json, headers: {"Content-Type": "application/json", 'ACCEPT': 'application/json'})
 
+  end
+
+  config.before(:each) do
+    add_user_by_email = {
+      "msg": "string",
+      "code": "UserIdAlreadyExists",
+      "params": {}
+    }
+    stub_request(:post, "https://api.iterable.com/api/users/update").
+    to_return(body: add_user_by_email.to_json, headers: {"Content-Type": "application/json", 'ACCEPT': 'application/json'})
+  end
+
+  config.before(:each) do
+    add_user_by_userId = {
+      "msg": "string",
+      "code": "UserIdAlreadyExists",
+      "params": {}
+    }
+    stub_request(:post, "https://api.iterable.com/api/users/update").
+    to_return(body: add_user_by_userId.to_json, headers: {"Content-Type": "application/json", 'ACCEPT': 'application/json'})
   end
 
 
