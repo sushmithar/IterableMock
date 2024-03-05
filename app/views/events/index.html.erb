@@ -25,7 +25,11 @@
 						<td><%= event.name %></td>
 						<td><%= event.event_type %></td>
 						<td><%= event.created_at %></td>
-						<td><%= link_to “Send Email”, send_mail_events_path, method: :post , class: "action", remote: true %></td>	
+						<td>
+						    <% if event.event_type == "event_b" %>
+						   		<%= link_to “Send Email”, send_mail_events_path, method: :post , class: "action", remote: true %>
+							<% end %>
+						</td>	
 					</tr>
 			    <% end %>
 			<% else %>
